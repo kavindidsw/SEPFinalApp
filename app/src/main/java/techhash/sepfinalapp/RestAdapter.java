@@ -87,12 +87,12 @@ public class RestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             Toast.makeText(context, "You clicked an item "+intRestId.getText() , Toast.LENGTH_SHORT).show();
 
 
-            //int Rid=intRestId.getText();
+           //int Rid=intRestId.getText();
 
 
-           // Intent intent = new Intent(context,ViewRestaurant.class);
-            //intent.putExtra("RId",intRestId.getText() );
-            //context.startActivity(intent);
+            Intent intent = new Intent(context,ViewRestaurant.class);
+            intent.putExtra("RId",intRestId.getText() );
+            context.startActivity(intent);
 
         }
     }

@@ -39,6 +39,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     public static final int READ_TIMEOUT = 15000;
     private RecyclerView mRest;
     private RestAdapter mAdapter;
+    Config config=new Config();
 
 
     @Override
@@ -96,7 +97,7 @@ public class SearchResultsActivity extends AppCompatActivity {
             try {
 
                 // Enter URL address where your php file resides
-                url = new URL("http://192.168.8.100/SEP/searchMain.php");
+                url = new URL("http://"+config.getUrl()+ "/SEP/searchMain.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block

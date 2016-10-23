@@ -7,6 +7,12 @@
     android:paddingTop="20dp"
     >
 
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:src="@drawable/pizza"
+        android:scaleType="fitXY"
+        android:id="@+id/imRes"/>
 
 
     <ImageView
@@ -15,7 +21,7 @@
         android:scaleType="fitXY"
         android:layout_height="40dp"
         android:src="@drawable/pizza"
-        android:id="@+id/imRes"/>
+        />
 
 
     <TextView
