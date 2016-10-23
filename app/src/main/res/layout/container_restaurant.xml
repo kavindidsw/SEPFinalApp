@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:paddingTop="20dp"
+    >
+
+
+
+    <ImageView
+        android:layout_width="60dp"
+        android:paddingTop="200dp"
+        android:scaleType="fitXY"
+        android:layout_height="40dp"
+        android:src="@drawable/pizza"
+        android:id="@+id/imRes"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Restaurant Name"
+        android:id="@+id/textResName"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/imRes"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textPostalcode"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/textResName"
+        android:layout_toRightOf="@id/imRes"
+        android:textColor="#666"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="sd"
+        android:id="@+id/textaddress"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/textPostalcode"
+        android:layout_toRightOf="@id/imRes"
+        android:textColor="#666"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text=""
+        android:id="@+id/textResid"
+        android:layout_marginLeft="5dp"
+        android:visibility="invisible"
+        android:layout_below="@id/textPostalcode"
+        android:layout_toRightOf="@id/imRes"
+        android:textColor="#666"/>
+
+
+</RelativeLayout>

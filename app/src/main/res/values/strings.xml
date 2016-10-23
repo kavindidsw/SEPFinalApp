@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SEPFinalApp</string>
+    <string name="mytoolbar_title">Search Restaurants</string>
+    <string name="menu_1">option1</string>
+    <string name="menu_2">option 2</string>
+    <string name="searchable">Searchable</string>
+    <string name="menu_search">Search</string>
+    <string name="close">close</string>
+    <string name="open">open</string>
+</resources>
