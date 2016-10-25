@@ -8,5 +8,10 @@ public class Restaurant {
     public String HotelName;
     public String Postalcode;
     public String Address;
+    public String Description;
+    public String Openinghours;
+    public String LandPhone;
     public String Email;
+
+
 }

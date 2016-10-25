@@ -169,8 +169,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             //super.onPostExecute(s);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
             pdLoading.dismiss();
             List<Restaurant> data = new ArrayList<>();
 
@@ -179,8 +178,11 @@ public class SearchResultsActivity extends AppCompatActivity {
                 Toast.makeText(SearchResultsActivity.this, "No Results found for entered query", Toast.LENGTH_LONG).show();
 
             } else {
+
+               // Toast.makeText(SearchResultsActivity.this, result, Toast.LENGTH_LONG).show();
                 try {
                     JSONArray jsonArray = new JSONArray(result);
+
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -191,13 +193,17 @@ public class SearchResultsActivity extends AppCompatActivity {
                         restaurant.ID=jsonObject.getString("HotelId");
                         //81restaurant.Email=jsonObject.getString("Email");
                         data.add(restaurant);
-                    }
 
+
+                    }
 
                     mRest=(RecyclerView)findViewById(R.id.RestList);
                     mAdapter=new RestAdapter(SearchResultsActivity.this,data);
                     mRest.setAdapter(mAdapter);
                     mRest.setLayoutManager(new LinearLayoutManager(SearchResultsActivity.this));
+
+
+
 
 
 

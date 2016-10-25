@@ -2,9 +2,14 @@ package techhash.sepfinalapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +23,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+
+
+
 public class ViewRestaurant extends AppCompatActivity {
 
     private String stringData;
     private TextView textviewresult;
     private ProgressDialog loading;
-    Config config;
+    Config config=new Config();
+    private String DATA_URL = "http://"+config.getUrl()+"/SEP/getRestData.php?id=";
+   // private String DATA_URL_MENU="http://"+config.getUrl()+"/SEP/getData.php?id=";
+   private  final String DATA_URL_MENU="http://"+config.getUrl()+"/SEP/getData.php?id=";
+
+    ListView list;
+
 
 
 
@@ -40,6 +55,8 @@ public class ViewRestaurant extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+
         Intent intent = getIntent();
         if (null != intent) {
             stringData= intent.getStringExtra("RId");
@@ -48,15 +65,47 @@ public class ViewRestaurant extends AppCompatActivity {
             //char charData = intent.getCharExtra(KEY, defaultValue);
 
         }
-        getData();
+        getRestaurantData();
 
+        list = (ListView) findViewById(R.id.listView);
 
+        sendRequest();
 
 
 
     }
 
-    private void getData(){
+
+    private void sendRequest(){
+
+        StringRequest stringRequest = new StringRequest(DATA_URL_MENU+stringData,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        showJSON(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ViewRestaurant.this,error.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    private void showJSON(String json){
+        ParseJSON pj = new ParseJSON(json);
+        pj.parseJSON();
+        MenuAdapter cl = new MenuAdapter(this,ParseJSON.names);
+        list.setAdapter(cl);
+    }
+
+
+
+    private void getRestaurantData(){
 
         if(stringData.equals("")){
 
@@ -64,7 +113,7 @@ public class ViewRestaurant extends AppCompatActivity {
             return;
         }
         loading=ProgressDialog.show(this,"Please wait...","Fetching..",false,false);
-        String DATA_URL = "http://192.168.8.100/SEP/getRestData.php?id=";
+
         String url=DATA_URL+stringData;
         StringRequest stringRequest=new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -87,30 +136,47 @@ public class ViewRestaurant extends AppCompatActivity {
 
     }
 
+
     private void ShowJSON(String response){
 
-        //Restaurant restaurant=new Restaurant();
-        String Hotelname="";
-        String Address="";
-        String RegNo="";
+        Restaurant restaurant=new Restaurant();
+
+        TextView txtHotelName;
+        TextView txtAddress;
+        TextView txtLandphone;
+        TextView txtEmail;
+        TextView txtOpeningHours;
+        TextView txtDescription;
+
+        txtHotelName= (TextView) findViewById(R.id.textviewHotelName);
+        txtDescription=(TextView)findViewById(R.id.textviewHotelDescription);
+
 
         try{
             JSONObject jsonObject=new JSONObject(response);
             JSONArray jsonArray=jsonObject.getJSONArray("result");
             JSONObject object=jsonArray.getJSONObject(0);
-            Hotelname=object.getString("HotelName");
-            Address=object.getString("Address");
-            RegNo=object.getString("RegistrationNo");
+            restaurant.HotelName=object.getString("HotelName");
+            restaurant.Address=object.getString("Address");
+            restaurant.Description=object.getString("Description");
+            restaurant.LandPhone=object.getString("LandLine");
+            restaurant.Openinghours=object.getString("OpeningHours");
 
 
-            getSupportActionBar().setTitle(Hotelname);
+            getSupportActionBar().setTitle(restaurant.HotelName);
         }
         catch (JSONException e){
             e.printStackTrace();
         }
 
-        textviewresult.setText(Hotelname+" :"+Address+":"+RegNo);
+        textviewresult.setText(restaurant.HotelName+" :"+restaurant.Address+":"+restaurant.Openinghours);
+        txtHotelName.setText(restaurant.HotelName);
+        txtDescription.setText(restaurant.Description);
 
 
     }
+
+
+
+
 }

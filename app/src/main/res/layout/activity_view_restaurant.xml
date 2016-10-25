@@ -8,15 +8,84 @@
     <include layout="@layout/toolbar"
         android:id="@+id/toolbar_view_restaurant"/>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/Resprofile_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/profile"
+        app:border_color="#FF000000"
+        android:layout_marginTop="80dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+
+
+        />
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:id="@+id/textviewHotelName"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:text="hello World"
+
+    android:layout_marginTop="150dp"
+    android:layout_centerVertical="true"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/textviewHotelDescription"
+        android:layout_height="wrap_content"
+        android:text="hello W"
+        android:layout_marginTop="177dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="200dp"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/view" />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/textViewresult"
         android:layout_marginTop="307dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restaurant Menu info"
+        android:layout_below="@+id/view"
+        android:id="@+id/menu_text"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/holo_red_light"
+        />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/menu_text"
+
+        />
 
 
 </RelativeLayout>
